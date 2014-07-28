@@ -13,7 +13,7 @@ type
 
 var sb:Sub[string] = Sub[string](name: "sub")
 ```
-
+object inherite from generic type
 SIGSEGV: Illegal storage access. (Attempt to read from nil?)
 
 
@@ -31,6 +31,7 @@ type Widget* = ref object of TObject
 
 proc proneError(self:var Widget) = discard
 ```
+define an ojbect property of generic type
 SIGSEGV: Illegal storage access. (Attempt to read from nil?)
 
 But this works
