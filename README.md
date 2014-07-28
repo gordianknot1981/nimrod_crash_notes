@@ -1,5 +1,4 @@
 ##note: Illegal storage access
-------------
 
 ```
 type
@@ -60,7 +59,6 @@ proc proneError(self:var Widget) = discard
 ```
 
 ##note: macro bug
-------------
 ```
 tmp = iintTable[string,string]()
 tmp["properties"] = "width"
