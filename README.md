@@ -1,4 +1,4 @@
-Illegal storage access
+note: Illegal storage access
 ==================
 ```
 type
@@ -42,7 +42,7 @@ proc proneError(self:var Widget) = discard
 ```
 
 
-But this works
+to clear the problem
 ```
 type
    KProperty[S] = ref object of TObject
@@ -57,6 +57,49 @@ type Widget* = ref object of TObject
 
 proc proneError(self:var Widget) = discard
 ```
+
+note: macro bug
+=======================
+```
+tmp = iintTable[string,string]()
+tmp["properties"] = "width"
+tmp["properties"] = "height"
+for property, typ in tmp.pairs():
+         block:
+            let vb = property
+            let mvb = "p_" + vb
+            let fetch1 = "fetch_" + property + "_getter"
+            let fetch2 = "fetch_" + property + "_setter"
+
+#-------------------------------------------------------
+# in some circumstances nimrod is prone bug by messing
+# up reistered value when using macros. In above case,
+# instead of "fetch_width_getter", or "fetch_height_getter", 
+# "fetch" was messed up by some odd value like "propertieswidth_getter"
+# or "propertiesheight_getter
+#
+# to clear this...
+
+
+      let fe = "fetch_"
+      let se = "_setter"
+      let ge = "_getter"
+      for property, typ in tmp.pairs():
+         block:
+            let vb = property
+            let mvb = "p_" + vb
+            let fetch1 = fe + property + ge
+            let fetch2 = fe + property + se
+
+```
+
+
+
+
+
+
+
+
 
 
 
