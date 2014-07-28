@@ -1,5 +1,5 @@
-note: Illegal storage access
-==================
+##note: Illegal storage access
+------------
 ```
 type
    Super[S] = ref object of TObject
@@ -59,7 +59,7 @@ proc proneError(self:var Widget) = discard
 ```
 
 note: macro bug
-=======================
+------------
 ```
 tmp = iintTable[string,string]()
 tmp["properties"] = "width"
