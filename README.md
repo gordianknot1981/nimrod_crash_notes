@@ -12,9 +12,13 @@ type
       p_state: S
 
 var sb:Sub[string] = Sub[string](name: "sub")
+
+#------------------------------------------------------------
+# object inherited from generic type
+# SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+#------------------------------------------------------------
 ```
-object inherite from generic type
-SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+
 
 
 ```
@@ -30,9 +34,13 @@ type Widget* = ref object of TObject
    p: KProperty[cint]
 
 proc proneError(self:var Widget) = discard
+
+#-----------------------------------------------------------
+# define an ojbect property of generic type
+# SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+#------------------------------------------------------------
 ```
-define an ojbect property of generic type
-SIGSEGV: Illegal storage access. (Attempt to read from nil?)
+
 
 But this works
 ```
